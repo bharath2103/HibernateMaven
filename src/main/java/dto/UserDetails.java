@@ -1,7 +1,9 @@
 package dto;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Temporal;
@@ -13,7 +15,7 @@ public class UserDetails {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id")
     private int userId;
 
@@ -30,6 +32,10 @@ public class UserDetails {
     @Column(name = "description")
     @Lob 
     private String description;
+
+    @Embedded
+    @Column(name = "address")
+    private UserAddress userAddress;
 
     public int getUserId() {
         return userId;
@@ -69,5 +75,13 @@ public class UserDetails {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public UserAddress getUserAddress() {
+        return userAddress;
+    }
+
+    public void setUserAddress(UserAddress userAddress) {
+        this.userAddress = userAddress;
     }
 }
