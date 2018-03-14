@@ -13,7 +13,6 @@ public class HibernateTest {
 
     public static void main(String[] args) {
         UserDetails userDetails = new UserDetails();
-        userDetails.setUserId(1);
         userDetails.setUserName("Aishu");
         userDetails.setUserAge(20);
         userDetails.setDateOfBirth(new Date());
