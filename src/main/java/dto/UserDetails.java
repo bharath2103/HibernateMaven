@@ -1,4 +1,6 @@
 package dto;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -34,8 +36,18 @@ public class UserDetails {
     private String description;
 
     @Embedded
-    @Column(name = "address")
-    private UserAddress userAddress;
+    @AttributeOverrides({
+            @AttributeOverride(name = "street", column = @Column(name = "offStreet")),
+            @AttributeOverride(name = "city", column = @Column(name = "offCity")),
+            @AttributeOverride(name = "state", column = @Column(name = "offState")),
+            @AttributeOverride(name = "pin", column = @Column(name = "offPin"))
+    })
+    private UserAddress userHomeAddress;
+
+    @Embedded
+    private UserAddress userOfficeAddress;
+
+
 
     public int getUserId() {
         return userId;
@@ -77,11 +89,19 @@ public class UserDetails {
         this.description = description;
     }
 
-    public UserAddress getUserAddress() {
-        return userAddress;
+    public UserAddress getUserHomeAddress() {
+        return userHomeAddress;
     }
 
-    public void setUserAddress(UserAddress userAddress) {
-        this.userAddress = userAddress;
+    public void setUserHomeAddress(UserAddress userHomeAddress) {
+        this.userHomeAddress = userHomeAddress;
+    }
+
+    public UserAddress getUserOfficeAddress() {
+        return userOfficeAddress;
+    }
+
+    public void setUserOfficeAddress(UserAddress userOfficeAddress) {
+        this.userOfficeAddress = userOfficeAddress;
     }
 }

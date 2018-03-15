@@ -19,12 +19,19 @@ public class HibernateTest {
         userDetails.setDateOfBirth(new Date());
         userDetails.setDescription("She's my queen");
 
-        UserAddress userAddress = new UserAddress();
-        userAddress.setCity("Coimbatore");
-        userAddress.setPin("641001");
-        userAddress.setState("Tamilnadu");
-        userAddress.setStreet("Samaroa street");
-        userDetails.setUserAddress(userAddress);
+        UserAddress userHomeAddress = new UserAddress();
+        userHomeAddress.setCity("Coimbatore");
+        userHomeAddress.setPin("641001");
+        userHomeAddress.setState("Tamilnadu");
+        userHomeAddress.setStreet("Samaroa street");
+        userDetails.setUserHomeAddress(userHomeAddress);
+
+        UserAddress userOfficeAddress = new UserAddress();
+        userOfficeAddress.setCity("Cochin");
+        userOfficeAddress.setPin("6410");
+        userOfficeAddress.setState("Kerala");
+        userOfficeAddress.setStreet("IBS Road");
+        userDetails.setUserOfficeAddress(userOfficeAddress);
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
