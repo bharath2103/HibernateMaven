@@ -2,17 +2,16 @@ package dto;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-
 @Embeddable
 public class UserAddress {
 
-    @Column(name = "street")
+    @Column(name = "STREET")
     private String street;
-    @Column(name = "city")
+    @Column(name = "CITY")
     private String city;
-    @Column(name = "state")
+    @Column(name = "STATE")
     private String state;
-    @Column(name = "pin")
+    @Column(name = "PIN")
     private String pin;
 
     public String getStreet() {
