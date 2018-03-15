@@ -2,6 +2,7 @@ package dto;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,8 @@ import javax.persistence.Lob;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity (name = "USER_DETAILS")
 public class UserDetails {
@@ -35,18 +38,8 @@ public class UserDetails {
     @Lob 
     private String description;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "street", column = @Column(name = "offStreet")),
-            @AttributeOverride(name = "city", column = @Column(name = "offCity")),
-            @AttributeOverride(name = "state", column = @Column(name = "offState")),
-            @AttributeOverride(name = "pin", column = @Column(name = "offPin"))
-    })
-    private UserAddress userHomeAddress;
-
-    @Embedded
-    private UserAddress userOfficeAddress;
-
+    @ElementCollection
+    private Set<UserAddress> listOfUserAddress = new HashSet<>();
 
 
     public int getUserId() {
@@ -89,19 +82,11 @@ public class UserDetails {
         this.description = description;
     }
 
-    public UserAddress getUserHomeAddress() {
-        return userHomeAddress;
+    public Set<UserAddress> getListOfUserAddress() {
+        return listOfUserAddress;
     }
 
-    public void setUserHomeAddress(UserAddress userHomeAddress) {
-        this.userHomeAddress = userHomeAddress;
-    }
-
-    public UserAddress getUserOfficeAddress() {
-        return userOfficeAddress;
-    }
-
-    public void setUserOfficeAddress(UserAddress userOfficeAddress) {
-        this.userOfficeAddress = userOfficeAddress;
+    public void setListOfUserAddress(Set<UserAddress> listOfUserAddress) {
+        this.listOfUserAddress = listOfUserAddress;
     }
 }

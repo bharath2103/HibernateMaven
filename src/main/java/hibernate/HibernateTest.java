@@ -19,19 +19,21 @@ public class HibernateTest {
         userDetails.setDateOfBirth(new Date());
         userDetails.setDescription("She's my queen");
 
-        UserAddress userHomeAddress = new UserAddress();
-        userHomeAddress.setCity("Coimbatore");
-        userHomeAddress.setPin("641001");
-        userHomeAddress.setState("Tamilnadu");
-        userHomeAddress.setStreet("Samaroa street");
-        userDetails.setUserHomeAddress(userHomeAddress);
+        UserAddress userAddress1 = new UserAddress();
+        userAddress1.setCity("Coimbatore");
+        userAddress1.setPin("641001");
+        userAddress1.setState("Tamilnadu");
+        userAddress1.setStreet("Samaroa street");
 
-        UserAddress userOfficeAddress = new UserAddress();
-        userOfficeAddress.setCity("Cochin");
-        userOfficeAddress.setPin("6410");
-        userOfficeAddress.setState("Kerala");
-        userOfficeAddress.setStreet("IBS Road");
-        userDetails.setUserOfficeAddress(userOfficeAddress);
+        UserAddress userAddress2 = new UserAddress();
+        userAddress2.setCity("Cochin");
+        userAddress2.setPin("6410");
+        userAddress2.setState("Kerala");
+        userAddress2.setStreet("IBS Road");
+
+
+        userDetails.getListOfUserAddress().add(userAddress1);
+        userDetails.getListOfUserAddress().add(userAddress2);
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
@@ -44,7 +46,7 @@ public class HibernateTest {
         session = sessionFactory.openSession();
         session.beginTransaction();
         userDetails = (UserDetails) session.get(UserDetails.class, 1);
-        System.out.println("User name retrieved is "+userDetails.getUserName());
+        System.out.println("User name retrieved is "+userDetails.getListOfUserAddress());
 
     }
 }
