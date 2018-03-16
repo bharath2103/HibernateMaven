@@ -10,12 +10,14 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.ArrayList;
@@ -35,23 +37,9 @@ public class UserDetails {
     @Column(name = "NAME")
     private String userName;
 
-    @Column(name = "AGE")
-    private int userAge;
-
-    @Column(name = "DOB")
-    @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
-
-    @Column(name = "DESCRIPTION")
-    @Lob 
-    private String description;
-
-    @ElementCollection
-    @JoinTable(name = "USER_ADDRESS", joinColumns = @JoinColumn(name = "USER_ID"))
-    @GenericGenerator(name = "sequence-gen", strategy = "sequence")
-    @CollectionId(columns = {@Column(name = "ADDRESS_ID")}, type = @Type(type = "long"), generator = "sequence-gen")
-    private Collection<UserAddress> listOfUserAddress = new ArrayList<>();
-
+    @OneToOne
+    @JoinColumn(name = "VEHICLE_ID")
+    private Vehicle vehicle;
 
     public int getUserId() {
         return userId;
@@ -69,35 +57,11 @@ public class UserDetails {
         this.userName = userName;
     }
 
-    public int getUserAge() {
-        return userAge;
+    public Vehicle getVehicle() {
+        return vehicle;
     }
 
-    public void setUserAge(int userAge) {
-        this.userAge = userAge;
-    }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Collection<UserAddress> getListOfUserAddress() {
-        return listOfUserAddress;
-    }
-
-    public void setListOfUserAddress(Collection<UserAddress> listOfUserAddress) {
-        this.listOfUserAddress = listOfUserAddress;
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }
