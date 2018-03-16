@@ -40,6 +40,7 @@
 
         <!-- Names the annotated entity class  -->
         <mapping class="dto.UserDetails"/>
+        <mapping class="dto.Vehicle"/>
 
     </session-factory>
 </hibernate-configuration>
