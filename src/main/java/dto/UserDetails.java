@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
@@ -39,7 +40,8 @@ public class UserDetails {
     private String userName;
 
     @OneToMany
-    private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
+    @JoinTable(joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
+    protected Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
     public int getUserId() {
         return userId;
