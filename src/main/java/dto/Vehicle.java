@@ -5,9 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.print.attribute.standard.MediaSize;
 
-@Entity(name = "VEHICLE_DETAILS")
+@Entity
+@Table(name = "VEHICLE_DETAILS")
 public class Vehicle {
 
     @Id
