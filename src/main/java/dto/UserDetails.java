@@ -40,7 +40,7 @@ public class UserDetails {
     private String userName;
 
     @OneToMany
-    @JoinTable(joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
+    @JoinTable(name = "USER_VEHICLE", joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
     protected Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
     public int getUserId() {

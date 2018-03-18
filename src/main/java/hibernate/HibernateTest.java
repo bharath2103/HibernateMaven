@@ -19,8 +19,10 @@ public class HibernateTest {
 
         Vehicle vehicleDetails1 = new Vehicle();
         vehicleDetails1.setVehicleName("Car");
+        vehicleDetails1.setUserDetails(userDetails);
         Vehicle vehicleDetails2 = new Vehicle();
         vehicleDetails2.setVehicleName("Jeep");
+        vehicleDetails2.setUserDetails(userDetails);
 
         userDetails.getVehicle().add(vehicleDetails1);
         userDetails.getVehicle().add(vehicleDetails2);
