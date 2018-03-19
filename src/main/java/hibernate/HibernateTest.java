@@ -17,33 +17,33 @@ public class HibernateTest {
         userDetails.setUserName("Aishu");
 
         Vehicle vehicleDetails1 = new Vehicle();
-        vehicleDetails1.setVehicleName("Car");
+        vehicleDetails1.setVehicleName("Maserati");
+//        vehicleDetails1.setUserID(userDetails);
         Vehicle vehicleDetails2 = new Vehicle();
-        vehicleDetails2.setVehicleName("Jeep");
+        vehicleDetails2.setVehicleName("Bugatti");
+ //       vehicleDetails2.setUserID(userDetails);
+
 
         userDetails.getVehicle().add(vehicleDetails1);
         userDetails.getVehicle().add(vehicleDetails2);
 
-        vehicleDetails1.setUserDetails(userDetails);
-        vehicleDetails2.setUserDetails(userDetails);
-
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(userDetails);
-        session.save(vehicleDetails1);
-        session.save(vehicleDetails2);
+        session.persist(userDetails);
+ //       session.save(vehicleDetails1);
+ //       session.save(vehicleDetails2);
         session.getTransaction().commit();
         session.close();
 
 
-//        session = sessionFactory.openSession();
-//        session.beginTransaction();
-//
-//        UserDetails userDetails1 = (UserDetails) session.get(UserDetails.class,1);
-//        userDetails1.getListOfVehicle().stream()
-//                .forEach(s -> System.out.println(s.getVehicleName()));
-//        session.getTransaction().commit();
-//        session.close();
+        Session session1 = sessionFactory.openSession();
+        session1.beginTransaction();
+        Vehicle vehicle = (Vehicle)session1.get(Vehicle.class,2);
+        System.out.println(vehicle.getUserID());
+        session1.getTransaction().commit();
+        session1.close();
+
+
     }
 }

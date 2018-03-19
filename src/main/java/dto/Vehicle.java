@@ -1,18 +1,17 @@
 package dto;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
 import javax.print.attribute.standard.MediaSize;
-import java.util.ArrayList;
-import java.util.Collection;
 
-@Entity
-@Table(name = "VEHICLE_DETAILS")
+@Entity(name = "VEHICLE_DETAILS")
 public class Vehicle {
 
     @Id
@@ -24,7 +23,8 @@ public class Vehicle {
     private String vehicleName;
 
     @ManyToOne
-    private UserDetails userDetails;
+    @NotFound(action = NotFoundAction.IGNORE)
+    private UserDetails userID;
 
     public int getVehicleId() {
         return vehicleId;
@@ -42,11 +42,11 @@ public class Vehicle {
         this.vehicleName = vehicleName;
     }
 
-    public UserDetails getUserDetails() {
-        return userDetails;
+    public UserDetails getUserID() {
+        return userID;
     }
 
-    public void setUserDetails(UserDetails userDetails) {
-        this.userDetails = userDetails;
+    public void setUserID(UserDetails userID) {
+        this.userID = userID;
     }
 }

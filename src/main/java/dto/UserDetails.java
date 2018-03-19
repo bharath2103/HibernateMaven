@@ -6,6 +6,7 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embedded;
@@ -38,8 +39,9 @@ public class UserDetails {
     @Column(name = "NAME")
     private String userName;
 
-    @OneToMany(mappedBy = "userDetails")
-    private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
+    @OneToMany(mappedBy = "userID")
+   // @JoinTable(name = "USER_VEHICLE_DETAILS",joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
+    private Collection<Vehicle> vehicle = new ArrayList<>();
 
     public int getUserId() {
         return userId;
@@ -64,6 +66,4 @@ public class UserDetails {
     public void setVehicle(Collection<Vehicle> vehicle) {
         this.vehicle = vehicle;
     }
-
-
 }
