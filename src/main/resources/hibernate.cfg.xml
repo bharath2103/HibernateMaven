@@ -41,6 +41,8 @@
         <!-- Names the annotated entity class  -->
         <mapping class="dto.UserDetails"/>
         <mapping class="dto.Vehicle"/>
+        <mapping class="dto.TwoWheelerVehicleImpl"/>
+        <mapping class="dto.FourWheelerVehicleImpl"/>
 
     </session-factory>
 </hibernate-configuration>

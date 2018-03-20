@@ -23,7 +23,7 @@ public class Vehicle {
     private String vehicleName;
 
     @ManyToOne
-    @NotFound(action = NotFoundAction.IGNORE)
+    @NotFound(action = NotFoundAction.EXCEPTION)
     private UserDetails userID;
 
     public int getVehicleId() {

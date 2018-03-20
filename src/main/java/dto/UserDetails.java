@@ -39,7 +39,7 @@ public class UserDetails {
     @Column(name = "NAME")
     private String userName;
 
-    @OneToMany(mappedBy = "userID")
+    @OneToMany(mappedBy = "userID", cascade = CascadeType.PERSIST)
    // @JoinTable(name = "USER_VEHICLE_DETAILS",joinColumns = @JoinColumn(name = "USER_ID"),inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
     private Collection<Vehicle> vehicle = new ArrayList<>();
 
