@@ -18,13 +18,6 @@ public class HibernateTest {
         UserDetails userDetails = new UserDetails();
         userDetails.setUserName("Aishu");
 
-//        Vehicle vehicleDetails1 = new Vehicle();
-//        vehicleDetails1.setVehicleName("Maserati");
-//        vehicleDetails1.setUserID(userDetails);
-//        Vehicle vehicleDetails2 = new Vehicle();
-//        vehicleDetails2.setVehicleName("Bugatti");
-//        vehicleDetails2.setUserID(userDetails);
-
         TwoWheelerVehicleImpl twoWheelerVehicle = new TwoWheelerVehicleImpl();
         twoWheelerVehicle.setVehicleName("Atlas");
         twoWheelerVehicle.setUserID(userDetails);

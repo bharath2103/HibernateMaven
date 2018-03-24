@@ -1,9 +1,11 @@
 package dto;
 
 import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
+@DiscriminatorValue("Bike")
 public class TwoWheelerVehicleImpl extends Vehicle {
     @Column(name = "STEERING_BAR")
     private String steeringBar;
