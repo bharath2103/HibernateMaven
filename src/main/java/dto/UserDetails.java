@@ -38,7 +38,7 @@ public class UserDetails {
     @Column(name = "NAME")
     private String userName;
 
-    @OneToMany(mappedBy = "userDetails")
+    @OneToMany
     private Collection<Vehicle> vehicle = new ArrayList<Vehicle>();
 
     public int getUserId() {
