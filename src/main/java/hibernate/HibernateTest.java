@@ -1,6 +1,8 @@
 package hibernate;
 
 
+import dto.StudentMarks;
+import dto.StudentRegistry;
 import dto.UserAddress;
 import dto.UserDetails;
 import dto.Vehicle;
@@ -12,20 +14,22 @@ import org.hibernate.cfg.Configuration;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 public class HibernateTest {
 
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
-        Session session1 = sessionFactory.openSession();
-        session1.beginTransaction();
-        Query query = session1.createQuery("from Vehicle");
-        List<Vehicle> listOfVehicle = (List<Vehicle>) query.list();
-        session1.getTransaction().commit();
-        session1.close();
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
 
-      listOfVehicle.forEach(l -> System.out.println(l.getVehicleName()));
+        Query query = session.createQuery("select rollNo, name  from StudentRegistry");
+        List<String>  listOfObjects = (List<String>)query.list();
+        session.getTransaction().commit();
+        session.close();
+
+        System.out.println(listOfObjects.size());
 
 
     }
