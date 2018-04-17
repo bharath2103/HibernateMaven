@@ -23,13 +23,18 @@ public class HibernateTest {
         SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+        String rollNo = "1";
+        String name = "Bharath";
+//        Query query = session.createQuery("from StudentRegistry where rollNo = ?");
+//        query.setInteger(0, Integer.parseInt(rollNo));
 
-        Query query = session.createQuery("select rollNo, name  from StudentRegistry");
-        List<String>  listOfObjects = (List<String>)query.list();
+        Query query = session.createQuery("from studentRegistry where name = ?");
+        query.setString(0,name);
+
+        List<StudentRegistry>  listOfObjects = (List<StudentRegistry>)query.list();
         session.getTransaction().commit();
         session.close();
-
-        System.out.println(listOfObjects.size());
+        listOfObjects.stream().forEach(s -> System.out.println(s.getName()));
 
 
     }
