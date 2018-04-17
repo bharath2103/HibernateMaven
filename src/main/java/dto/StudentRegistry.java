@@ -8,9 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
+@NamedQuery(name = "StudentRegistry.byRollNo", query = "from StudentRegistry where rollNo = ?")
 @Table(name = "STUDENT_REGISTRY")
 public class StudentRegistry {
 
