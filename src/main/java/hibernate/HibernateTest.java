@@ -24,7 +24,7 @@ public class HibernateTest {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Integer rollNo = 1;
-        Query query = session.getNamedQuery("StudentRegistry.byRollNo");
+        Query query = session.getNamedNativeQuery("StudentRegistry.nativeByRollNo");
         query.setInteger(0,rollNo);
 
         List<StudentRegistry>  listOfObjects = (List<StudentRegistry>)query.list();

@@ -14,7 +14,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
-@NamedQuery(name = "StudentRegistry.byRollNo", query = "from StudentRegistry where rollNo = ?")
+@NamedNativeQuery(name = "StudentRegistry.nativeByRollNo", query = "Select * from STUDENT_REGISTRY where ROLL_NO = ?",
+resultClass = StudentRegistry.class)
 @Table(name = "STUDENT_REGISTRY")
 public class StudentRegistry {
 
