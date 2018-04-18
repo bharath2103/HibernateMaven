@@ -14,6 +14,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
+import javax.rmi.CORBA.StubDelegate;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -26,13 +27,11 @@ public class HibernateTest {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         Criteria criteria = session.createCriteria(StudentRegistry.class);
-        criteria.add(Restrictions.eq("rollNo",1));
-
-
+        criteria.add(Restrictions.or(Restrictions.ge("studentMarks.socialScience",90),
+                Restrictions.between("studentMarks.english",40,100)));
         List<StudentRegistry>  listOfObjects = (List<StudentRegistry>)criteria.list();
         session.getTransaction().commit();
         session.close();
         listOfObjects.stream().forEach(s -> System.out.println(s.getName()));
-
     }
 }
