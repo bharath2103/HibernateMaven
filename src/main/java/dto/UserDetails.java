@@ -1,5 +1,7 @@
 package dto;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
@@ -7,8 +9,10 @@ public class UserDetails {
 
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
     private String userName;
+    private Integer aadhar;
 
     public int getUserId() {
         return userId;
@@ -24,5 +28,13 @@ public class UserDetails {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public Integer getAadhar() {
+        return aadhar;
+    }
+
+    public void setAadhar(Integer aadhar) {
+        this.aadhar = aadhar;
     }
 }
